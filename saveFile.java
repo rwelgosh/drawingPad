@@ -8,18 +8,36 @@ public class saveFile {
 	
 	public saveFile() {
 		file = null;
-		try {
-			fw = new FileWriter(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		fw = null;
 	}
 
-	public String matrixToFile(int[][] picture) {
+	public String matrixToFile(int[][] picture, int index) {
 		if(picture.length == 27 && picture[0].length == 27) {
-			
+			String num = Integer.toString(index);
+			String fileName = num + ".txt";
+			file = new File(fileName);
+			try {
+				fw = new FileWriter(file);
+				if(!file.createNewFile()) {
+					for(int i = 0; i < picture.length; i++) {
+						String line = "";
+						for(int j = 0; j < picture[i].length; j++) {
+							line += Integer.toString(picture[i][j]) + " ";
+						}
+						line += "\n";
+						fw.append(line);
+					}
+				} else {
+					fw.close();
+					return "File transcript unsuccesful - 1";
+				}
+				fw.close();
+				return "file successfully created";
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} 
-		return "File transcript unsuccesful";
+		return "File transcript unsuccesful - 2";
 	}
 	
 }
