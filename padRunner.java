@@ -28,9 +28,10 @@ public class padRunner extends PApplet {
 			System.out.println("pressed");
 			if((mouseX >= width/2 - 270 && mouseX <= width/2 + 270) && (mouseY >= height/2 - 370 & mouseY <= height/2 + 170)) {
 				rect(mouseX, mouseY, 20, 20);
+				System.out.println(mouseX + " " + mouseY);
 				for(int i = 0; i < 20; i++) {
 					for(int j = 0; j < 20; j++) {
-						pad[(mouseX-10) + i][(mouseY-10) + j] = 1;
+						pad[((mouseX-(width/2-270))-10) + i][((mouseY-(height/2-370))-10) + j] = 1;
 					}
 				}
 			}
